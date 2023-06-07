@@ -1,25 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import Container from "components/Container";
+import SearchForm from "components/SearchForm";
+import Header from "components/Header";
+import baseSearch from "Services/api";
+import Location from "components/Location";
+import { SearchData } from "types/data";
 
-function App() {
+function App(): JSX.Element {
+  const [result, setResult] = useState<SearchData>();
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  useEffect(() => {
+    if (
+      searchValue === "" ||
+      searchValue.toLowerCase() === result?.name.toLowerCase()
+    ) {
+      return;
+    }
+    async function getLocation() {
+      try {
+        const data: SearchData = await baseSearch(searchValue);
+        console.log(data);
+        setResult(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getLocation();
+  }, [result?.name, searchValue]);
+
+  const handleFormSubmit = (value: string): void => {
+    reset();
+    setSearchValue(value);
+  };
+
+  const reset = (): void => {
+    setResult(undefined);
+    setSearchValue("");
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header>
+        <SearchForm onSubmit={handleFormSubmit} />
+      </Header>
+      <Container>{result && <Location results={result} />}</Container>
+    </>
   );
 }
 
