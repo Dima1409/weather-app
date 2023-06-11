@@ -4,11 +4,14 @@ import SearchForm from "components/SearchForm";
 import Header from "components/Header";
 import baseSearch from "Services/api";
 import Location from "components/Location";
+import { SpinnerCircular } from "spinners-react";
 import { SearchData } from "types/data";
+import theme from "utils/theme";
 
 function App(): JSX.Element {
   const [result, setResult] = useState<SearchData>();
   const [searchValue, setSearchValue] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (
@@ -18,12 +21,15 @@ function App(): JSX.Element {
       return;
     }
     async function getLocation() {
+      setLoading(true);
       try {
         const data: SearchData = await baseSearch(searchValue);
         console.log(data);
         setResult(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
     getLocation();
@@ -43,7 +49,17 @@ function App(): JSX.Element {
       <Header>
         <SearchForm onSubmit={handleFormSubmit} />
       </Header>
-      <Container>{result && <Location results={result} />}</Container>
+      <Container>
+        {loading ? (
+          <SpinnerCircular
+            color={theme.colors.accent}
+            secondaryColor={theme.colors.background}
+            style={{ display: "block", margin: "0 auto" }}
+          />
+        ) : (
+          result && <Location results={result} />
+        )}
+      </Container>
     </>
   );
 }

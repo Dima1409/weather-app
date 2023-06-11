@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InputForm, BtnSubmit } from "./SearchForm.styled";
+import { Form, InputForm, BtnSubmit } from "./SearchForm.styled";
 
 interface FormProps {
   onSubmit: (query: string) => void;
@@ -18,7 +18,7 @@ const SearchForm: React.FC<FormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <InputForm
         type="text"
         value={query}
@@ -29,7 +29,7 @@ const SearchForm: React.FC<FormProps> = ({ onSubmit }) => {
       <BtnSubmit type="submit" disabled={query.trim() === ""}>
         Search
       </BtnSubmit>
-    </form>
+    </Form>
   );
 };
 
