@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import theme from "utils/theme";
+// import theme from "utils/theme";
 
 const Form = styled.form`
-border-radius: 6px;
-`
+  border-radius: 6px;
+`;
 
 const InputForm = styled.input`
   padding: 8px;
@@ -17,12 +17,13 @@ const InputForm = styled.input`
 const BtnSubmit = styled.button`
   margin: 0;
   padding: 8px 4px;
+  color: ${(props) => props.theme.accent};
   border: 0;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: ${theme.colors.enabled};
+  background-color: ${(props) => props.theme.enabled};
   &:disabled {
-    background-color: ${theme.colors.disabled};
+    background-color: ${(props) => props.theme.disabled};
   }
 `;
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import theme from "utils/theme";
+import { theme } from "utils/theme";
 
 const LocationWrapper = styled.div`
   display: flex;
@@ -8,8 +8,8 @@ const LocationWrapper = styled.div`
   padding: 10px;
   border: 1px solid transparent;
   border-radius: 20px;
-  background-color: ${theme.colors.background};
-  box-shadow: 0 2px 8px ${theme.colors.dark};
+  background-color: ${(props) => props.theme.background};
+  box-shadow: 0 2px 8px ${(props) => props.theme.dark};
 `;
 const CityWrapper = styled.div`
   display: flex;
@@ -40,8 +40,8 @@ const Description = styled.div`
   width: 80px;
   height: 80px;
   opacity: 0.9;
-  background-color: ${theme.colors.background};
-  box-shadow: 0 2px 8px ${theme.colors.dark};
+  background-color: ${(props) => props.theme.background};
+  box-shadow: 0 2px 8px ${(props) => props.theme.dark};
   font-size: ${theme.fontSizes.small}px;
   font-weight: ${theme.fontWeights.medium};
   color: white;
@@ -52,6 +52,7 @@ const CityMain = styled.p`
   color: white;
   margin: 0;
 `;
+
 export {
   LocationWrapper,
   CityWrapper,

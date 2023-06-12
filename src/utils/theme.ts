@@ -5,14 +5,6 @@ const breakpoints = {
 };
 
 const theme = {
-  colors: {
-    accent: "white",
-    background: "#63b7f8",
-    disabled: "gray",
-    dark: "black",
-    light: "blue",
-    enabled: "green",
-  },
   fontSizes: {
     extraSmall: 12,
     small: 14,
@@ -39,4 +31,35 @@ const theme = {
   },
 };
 
-export default theme;
+export interface TTheme {
+  name: string;
+  accent: string;
+  background: string;
+  disabled: string;
+  dark: string;
+  light: string;
+  enabled: string;
+};
+
+const themes: Record<"light" | "dark", TTheme> = {
+  light: {
+    name: "light",
+    accent: "black",
+    background: "rgba(103, 180, 240, .8)",
+    disabled: "rgb(195 199 181)",
+    dark: "black",
+    light: "blue",
+    enabled: "rgb(105 119 104)",
+  },
+  dark: {
+    name: "dark",
+    accent: "white",
+    background: "rgba(0, 0, 0, .8)",
+    disabled: "rgb(195 199 181)",
+    dark: "white",
+    light: "blue",
+    enabled: "rgb(105 119 104)",
+  },
+};
+
+export { theme, themes };
