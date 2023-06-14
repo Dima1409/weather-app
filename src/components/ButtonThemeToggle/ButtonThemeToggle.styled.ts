@@ -1,4 +1,12 @@
 import styled from 'styled-components';
+import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
+
+const SvgMoon = styled(HiOutlineMoon)`
+color: ${(props) => props.theme.accent};
+`
+const SvgSun = styled(HiOutlineSun)`
+color: ${(props) => props.theme.accent};
+`
 
 const Toggle = styled.label` 
   position: relative;
@@ -13,7 +21,7 @@ const Toggle = styled.label`
       background-color: ${(props) => props.theme.dark};
     }
     &:checked + span {
-      background-color: ${(props) => props.theme.light}f;
+      background-color: ${(props) => props.theme.light};
     }
   }
   & > span {
@@ -44,4 +52,4 @@ display: flex;
 align-items: center;
 `
 
-export { Toggle, ThemeSwitch};
+export { Toggle, ThemeSwitch, SvgMoon, SvgSun};

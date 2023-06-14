@@ -9,13 +9,17 @@ import baseSearch from "Services/api";
 import Location from "components/Location";
 import { SpinnerCircular } from "spinners-react";
 import { SearchData } from "types/data";
+import { Global } from "./App.styled";
 
 function App(): JSX.Element {
-  const [currentTheme, setCurrentTheme] = useState(themes.light);
+  const [currentTheme, setCurrentTheme] = useState(
+    JSON.parse(localStorage.getItem("themeMode") as string) || themes.light
+  );
   const switchTheme = () => {
     const nextTheme =
       currentTheme.name === "light" ? themes.dark : themes.light;
     setCurrentTheme(nextTheme);
+    localStorage.setItem("themeMode", JSON.stringify(nextTheme));
   };
   const [result, setResult] = useState<SearchData>();
   const [searchValue, setSearchValue] = useState<string>(
@@ -61,6 +65,7 @@ function App(): JSX.Element {
           <SearchForm onSubmit={handleFormSubmit} />
         </Header>
         <Container>
+          <Global/>
           {loading ? (
             <SpinnerCircular
               color={currentTheme.accent}

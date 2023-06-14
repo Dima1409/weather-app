@@ -53,11 +53,11 @@ const themes: Record<"light" | "dark", TTheme> = {
   },
   dark: {
     name: "dark",
-    accent: "white",
+    accent: "orange",
     background: "rgba(0, 0, 0, .8)",
     disabled: "rgb(195 199 181)",
     dark: "white",
-    light: "blue",
+    light: "darkblue",
     enabled: "rgb(105 119 104)",
   },
 };

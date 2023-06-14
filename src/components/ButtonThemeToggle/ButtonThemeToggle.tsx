@@ -1,6 +1,6 @@
-import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
+// import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
 import { IconContext } from "react-icons";
-import { Toggle, ThemeSwitch } from "./ButtonThemeToggle.styled";
+import { Toggle, ThemeSwitch, SvgSun, SvgMoon } from "./ButtonThemeToggle.styled";
 
 interface ButtonThemeProps {
   check: boolean;
@@ -15,12 +15,12 @@ const ButtonThemeToggle: React.FC<ButtonThemeProps> = ({
     <>
       <ThemeSwitch>
         <IconContext.Provider value={{ size: "25px" }}>
-          <HiOutlineSun />
+          <SvgSun/>
           <Toggle>
-            <input type="checkbox" checked={check} onChange={chooseTheme} />
+            <input type="checkbox" checked={check} onChange={chooseTheme}/>
             <span />
           </Toggle>
-          <HiOutlineMoon />
+          <SvgMoon/>
         </IconContext.Provider>
       </ThemeSwitch>
     </>

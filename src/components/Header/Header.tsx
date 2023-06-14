@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
       <Container>
         <HeaderWrapper>
           <ButtonThemeToggle
-            check={currentTheme.name==='dark'}
+            check={currentTheme.name === "dark"}
             chooseTheme={switchTheme}
           ></ButtonThemeToggle>
           {children}

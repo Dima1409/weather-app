@@ -3,7 +3,6 @@ import { theme } from "utils/theme";
 
 const MainContainer = styled.div`
   margin: 0 auto;
-
   padding-right: 10px;
   padding-left: 10px;
 
