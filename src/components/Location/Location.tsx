@@ -1,4 +1,4 @@
-import { SearchData } from "types/data";
+import { ISearchData } from "types/data";
 import {
   LocationWrapper,
   CityWrapper,
@@ -10,21 +10,19 @@ import {
 import { GiSunrise, GiSunset } from "react-icons/gi";
 
 interface LocationProps {
-  results: SearchData;
+  results: ISearchData;
 }
 
 const Location: React.FC<LocationProps> = ({ results }) => {
   const { name, main, sys, weather, wind } = results;
   const urlIcon = process.env.REACT_APP_ICON_URL;
   const iconLink = `${urlIcon}${weather[0].icon}@4x.png`;
-  // let date = new Date(dt * 1000).toLocaleString();
 
   return (
     <>
       {results && (
         <>
           <LocationWrapper>
-            {/* <div>Date: {date}</div> */}
             <Image src={iconLink} alt={weather[0].description} />
             <CityWrapper>
               {" "}
@@ -70,7 +68,7 @@ const Location: React.FC<LocationProps> = ({ results }) => {
                   flexDirection: "column",
                 }}
               >
-                <GiSunrise size={"50px"} />
+                <GiSunrise size={"40px"} />
                 <span>
                   {new Date(sys.sunrise * 1000).toLocaleString().slice(12, 24)}
                 </span>
@@ -83,7 +81,7 @@ const Location: React.FC<LocationProps> = ({ results }) => {
                   flexDirection: "column",
                 }}
               >
-                <GiSunset size={"50px"} />
+                <GiSunset size={"40px"} />
                 <span>
                   {new Date(sys.sunset * 1000).toLocaleString().slice(12, 24)}
                 </span>

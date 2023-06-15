@@ -17,15 +17,15 @@ const CityWrapper = styled.div`
   align-items: center;
 `;
 const Image = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   display: block;
   margin: 0;
 `;
 const DescriptionWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 10px 0;
+  margin: 5px 0;
   flex-wrap: wrap;
 `;
 const Description = styled.div`
@@ -36,9 +36,8 @@ const Description = styled.div`
   border: 1px solid transparent;
   border-radius: 20px;
   padding: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   width: 80px;
-  height: 80px;
   opacity: 0.9;
   background-color: ${(props) => props.theme.background};
   box-shadow: 0 2px 8px ${(props) => props.theme.dark};

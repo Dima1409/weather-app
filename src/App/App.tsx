@@ -5,11 +5,12 @@ import { themes } from "utils/theme";
 import Container from "components/Container";
 import SearchForm from "components/SearchForm";
 import Header from "components/Header";
-import baseSearch from "Services/api";
+import { baseSearch } from "Services/api";
 import Location from "components/Location";
 import { SpinnerCircular } from "spinners-react";
-import { SearchData } from "types/data";
+import { ISearchData } from "types/data";
 import { Global } from "./App.styled";
+import AdditionalData from "components/AdditionalData/AdditionalData";
 
 function App(): JSX.Element {
   const [currentTheme, setCurrentTheme] = useState(
@@ -21,7 +22,8 @@ function App(): JSX.Element {
     setCurrentTheme(nextTheme);
     localStorage.setItem("themeMode", JSON.stringify(nextTheme));
   };
-  const [result, setResult] = useState<SearchData>();
+  const [result, setResult] = useState<ISearchData>();
+
   const [searchValue, setSearchValue] = useState<string>(
     localStorage.getItem("weather-value") || ""
   );
@@ -37,7 +39,7 @@ function App(): JSX.Element {
     async function getLocation() {
       setLoading(true);
       try {
-        const data: SearchData = await baseSearch(searchValue);
+        const data: ISearchData = await baseSearch(searchValue);
         localStorage.setItem("weather-value", searchValue);
         setResult(data);
       } catch (error) {
@@ -48,7 +50,6 @@ function App(): JSX.Element {
     }
     getLocation();
   }, [result?.name, searchValue]);
-
   const handleFormSubmit = (value: string): void => {
     reset();
     setSearchValue(value);
@@ -65,7 +66,7 @@ function App(): JSX.Element {
           <SearchForm onSubmit={handleFormSubmit} />
         </Header>
         <Container>
-          <Global/>
+          <Global />
           {loading ? (
             <SpinnerCircular
               color={currentTheme.accent}
@@ -73,7 +74,12 @@ function App(): JSX.Element {
               style={{ display: "block", margin: "0 auto" }}
             />
           ) : (
-            result && <Location results={result} />
+            result && (
+              <>
+                <Location results={result} />
+                <AdditionalData></AdditionalData>
+              </>
+            )
           )}
         </Container>
       </ThemeContext.Provider>
