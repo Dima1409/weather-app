@@ -9,7 +9,7 @@ const LocationWrapper = styled.div`
   border: 1px solid transparent;
   border-radius: 20px;
   background-color: ${(props) => props.theme.background};
-  box-shadow: 0 2px 8px ${(props) => props.theme.dark};
+  box-shadow: 0 0 4px ${(props) => props.theme.text};
 `;
 const CityWrapper = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const Image = styled.img`
 const DescriptionWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 5px 0;
+  margin: 8px 0;
   flex-wrap: wrap;
 `;
 const Description = styled.div`
@@ -40,15 +40,18 @@ const Description = styled.div`
   width: 80px;
   opacity: 0.9;
   background-color: ${(props) => props.theme.background};
-  box-shadow: 0 2px 8px ${(props) => props.theme.dark};
+  box-shadow: 0 0 4px ${(props) => props.theme.text};
   font-size: ${theme.fontSizes.small}px;
   font-weight: ${theme.fontWeights.medium};
   color: white;
 `;
+const TextInfo = styled.span`
+  color: ${(props) => props.theme.text};
+`;
 const CityMain = styled.p`
   font-size: ${theme.fontSizes.large}px;
   font-weight: ${theme.fontWeights.bold};
-  color: white;
+  color: ${(props) => props.theme.text};
   margin: 0;
 `;
 
@@ -59,4 +62,5 @@ export {
   Description,
   CityMain,
   DescriptionWrapper,
+  TextInfo
 };

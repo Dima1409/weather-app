@@ -33,32 +33,32 @@ const theme = {
 
 export interface TTheme {
   name: string;
+  text: string;
   accent: string;
   background: string;
   disabled: string;
   dark: string;
-  light: string;
   enabled: string;
 };
 
 const themes: Record<"light" | "dark", TTheme> = {
   light: {
     name: "light",
-    accent: "black",
-    background: "rgba(103, 180, 240, .8)",
-    disabled: "rgb(195 199 181)",
-    dark: "black",
-    light: "blue",
-    enabled: "rgb(105 119 104)",
+    accent: "white",
+    text: 'rgb(2 33 65)',
+    background: "rgba(126, 179, 202, 0.8)",
+    disabled: "rgb(119, 119, 119)",
+    dark: "rgb(234 255 255)",
+    enabled: "rgb(69, 69, 69)",
   },
   dark: {
     name: "dark",
     accent: "orange",
+    text: 'rgb(201 243 192)',
     background: "rgba(0, 0, 0, .8)",
-    disabled: "rgb(195 199 181)",
-    dark: "white",
-    light: "darkblue",
-    enabled: "rgb(105 119 104)",
+    disabled: "rgb(119, 119, 119)",
+    dark: "rgb(32 32 32)",
+    enabled: "rgb(69, 69, 69)",
   },
 };
 

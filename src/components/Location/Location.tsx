@@ -6,6 +6,7 @@ import {
   Description,
   CityMain,
   DescriptionWrapper,
+  TextInfo,
 } from "./Location.styled";
 import { GiSunrise, GiSunset } from "react-icons/gi";
 
@@ -30,9 +31,9 @@ const Location: React.FC<LocationProps> = ({ results }) => {
                 {name}({sys.country})
               </CityMain>
               <CityMain>{main.temp.toFixed(1)} °C</CityMain>
-              <span style={{ color: "white" }}>
+              <TextInfo>
                 (FEELS LIKE {main.feels_like.toFixed(1)} °C)
-              </span>
+              </TextInfo>
               <CityMain>
                 {weather[0].description.charAt(0).toUpperCase() +
                   weather[0].description.slice(1)}
@@ -41,13 +42,16 @@ const Location: React.FC<LocationProps> = ({ results }) => {
           </LocationWrapper>
           <DescriptionWrapper>
             <Description>
-              <span>PRESSURE</span> {main.pressure} hPa
+              <TextInfo>PRESSURE</TextInfo>
+              <TextInfo>{main.pressure} hPa</TextInfo> 
             </Description>
             <Description>
-              <span>HUMIDITY</span> {main.humidity} %
+              <TextInfo>HUMIDITY</TextInfo>
+              <TextInfo>{main.humidity} %</TextInfo> 
             </Description>
             <Description>
-              <span>WIND</span> {wind.speed} m/s
+              <TextInfo>WIND</TextInfo>
+              <TextInfo>{wind.speed} m/s</TextInfo> 
             </Description>
           </DescriptionWrapper>
           <DescriptionWrapper>
@@ -60,7 +64,7 @@ const Location: React.FC<LocationProps> = ({ results }) => {
                 padding: "0 20px 5px",
               }}
             >
-              <span
+              <TextInfo
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -69,11 +73,11 @@ const Location: React.FC<LocationProps> = ({ results }) => {
                 }}
               >
                 <GiSunrise size={"40px"} />
-                <span>
+                <TextInfo>
                   {new Date(sys.sunrise * 1000).toLocaleString().slice(12, 24)}
-                </span>
-              </span>{" "}
-              <span
+                </TextInfo>
+              </TextInfo>{" "}
+              <TextInfo
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -82,10 +86,10 @@ const Location: React.FC<LocationProps> = ({ results }) => {
                 }}
               >
                 <GiSunset size={"40px"} />
-                <span>
+                <TextInfo>
                   {new Date(sys.sunset * 1000).toLocaleString().slice(12, 24)}
-                </span>
-              </span>{" "}
+                </TextInfo>
+              </TextInfo>{" "}
             </Description>
           </DescriptionWrapper>
         </>

@@ -74,12 +74,14 @@ function App(): JSX.Element {
               style={{ display: "block", margin: "0 auto" }}
             />
           ) : (
-            result && (
+            result ? 
               <>
                 <Location results={result} />
                 <AdditionalData></AdditionalData>
+              </> : 
+              <>
+              There are not result, please try again
               </>
-            )
           )}
         </Container>
       </ThemeContext.Provider>

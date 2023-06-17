@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
 
 const SvgMoon = styled(HiOutlineMoon)`
-color: ${(props) => props.theme.accent};
+color: ${(props) => props.theme.text};
 `
 const SvgSun = styled(HiOutlineSun)`
-color: ${(props) => props.theme.accent};
+color: ${(props) => props.theme.text};
 `
 
 const Toggle = styled.label` 
@@ -18,16 +18,16 @@ const Toggle = styled.label`
     display: none;
     &:checked + span::before {
       transform: translateX(25px);
-      background-color: ${(props) => props.theme.dark};
+      background-color: ${(props) => props.theme.enabled};
     }
     &:checked + span {
-      background-color: ${(props) => props.theme.light};
+      background-color: ${(props) => props.theme.text};
     }
   }
   & > span {
   position: absolute;
   cursor: pointer;
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.accent};
   border-radius: 25px;
   top: 0;
   right: 0;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Slider from "react-slick"
 
 const LoadInfo = styled.div`
   display: flex;
@@ -6,22 +7,30 @@ const LoadInfo = styled.div`
   align-items: center;
   flex-direction: row;
   font-size: 12px;
-  border: 1px solid white;
-  margin: 5px;
-  border-top: none;
-  border-bottom: none;
+  border-radius: 10px;
   background-color: ${(props)=>props.theme.background};
-  min-height: 120px;
+  min-height: 140px;
 `;
-
+const SliderWrapper = styled(Slider)`
+overflow: hidden;
+margin: 0 1px;
+& > div > div {
+display: flex;
+justify-content: space-between;
+& > div {
+  margin: 0 2px;
+}
+}
+`
 const LoadDate = styled.p`
-color: white;
+color: ${(props) => props.theme.text};
 margin: 0;
+padding: 2px;
 text-align: center;
 `
 
 const LoadTemp = styled(LoadDate)`
-font-size: 24px;
+font-size: 20px;
 `
 
 const Image = styled.img`
@@ -29,4 +38,4 @@ const Image = styled.img`
   margin: 0 auto;
 `;
 
-export { LoadInfo, LoadDate,LoadTemp, Image };
+export { LoadInfo, SliderWrapper, LoadDate,LoadTemp, Image };
