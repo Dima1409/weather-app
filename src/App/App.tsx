@@ -11,6 +11,7 @@ import { SpinnerCircular } from "spinners-react";
 import { ISearchData } from "types/data";
 import { Global } from "./App.styled";
 import AdditionalData from "components/AdditionalData/AdditionalData";
+// import NextDaysData from "components/NextDaysData/NextDaysData";
 
 function App(): JSX.Element {
   const [currentTheme, setCurrentTheme] = useState(
@@ -73,15 +74,14 @@ function App(): JSX.Element {
               secondaryColor={currentTheme.background}
               style={{ display: "block", margin: "0 auto" }}
             />
+          ) : result ? (
+            <>
+              <Location results={result} />
+              <AdditionalData></AdditionalData>
+              {/* <NextDaysData></NextDaysData> */}
+            </>
           ) : (
-            result ? 
-              <>
-                <Location results={result} />
-                <AdditionalData></AdditionalData>
-              </> : 
-              <>
-              There are not result, please try again
-              </>
+            <>There are not result, please try again</>
           )}
         </Container>
       </ThemeContext.Provider>

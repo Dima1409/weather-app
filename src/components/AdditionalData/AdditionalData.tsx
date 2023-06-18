@@ -1,4 +1,10 @@
-import { LoadInfo, SliderWrapper, LoadDate, LoadTemp, Image } from "./AdditionalData.styled";
+import {
+  LoadInfo,
+  SliderWrapper,
+  LoadDate,
+  LoadTemp,
+  Image,
+} from "./AdditionalData.styled";
 import { useState, useEffect } from "react";
 import { ISearchFiveDays } from "types/data";
 import { searchFiveDays } from "Services/api";
@@ -8,11 +14,11 @@ import "slick-carousel/slick/slick-theme.css";
 
 const AdditionalData: React.FC = () => {
   const settings = {
+    dots: true,
     infinite: false,
     speed: 1000,
     slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
+    slidesToScroll: 3,
     arrows: false,
     autoplaySpeed: 3000,
   };
@@ -23,7 +29,6 @@ const AdditionalData: React.FC = () => {
         const dataFiveDays: ISearchFiveDays = await searchFiveDays(
           localStorage.getItem("weather-value") || ""
         );
-        console.log(dataFiveDays);
         setSearchFive(dataFiveDays);
       } catch (error) {
         console.log(error);
@@ -39,7 +44,22 @@ const AdditionalData: React.FC = () => {
           return (
             <LoadInfo key={elem.dt}>
               <LoadDate>
-                {elem.dt_txt.slice(5, elem.dt_txt.length - 3)}
+                {new Date()
+                  .toLocaleDateString()
+                  .slice(0, 5)
+                  .split(".")
+                  .reverse()
+                  .join("-") === elem.dt_txt.slice(5, 10) ? (
+                  <div>
+                    <div>Today</div>
+                    <div>{elem.dt_txt.slice(10, elem.dt_txt.length - 3)}</div>
+                  </div>
+                ) : (
+                  <div>
+                    <div>Tomorrow</div>
+                    <div>{elem.dt_txt.slice(10, elem.dt_txt.length - 3)}</div>
+                  </div>
+                )}
               </LoadDate>
               <LoadTemp>{elem.main.temp.toFixed(1)} °C</LoadTemp>
               <Image
