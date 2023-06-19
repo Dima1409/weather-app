@@ -37,6 +37,7 @@ const AdditionalData: React.FC = () => {
     getAdditional();
   }, []);
   const urlIcon = process.env.REACT_APP_ICON_URL;
+  const currentDate = Number(new Date().toLocaleDateString().slice(0, 2));
   return (
     <>
       <SliderWrapper {...settings}>
@@ -44,12 +45,7 @@ const AdditionalData: React.FC = () => {
           return (
             <LoadInfo key={elem.dt}>
               <LoadDate>
-                {new Date()
-                  .toLocaleDateString()
-                  .slice(0, 5)
-                  .split(".")
-                  .reverse()
-                  .join("-") === elem.dt_txt.slice(5, 10) ? (
+                {currentDate === Number(elem.dt_txt.slice(8, 10)) ? (
                   <div>
                     <div>Today</div>
                     <div>{elem.dt_txt.slice(10, elem.dt_txt.length - 3)}</div>
