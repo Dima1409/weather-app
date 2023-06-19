@@ -9,7 +9,7 @@ const LoadInfo = styled.div`
   font-size: 12px;
   border-radius: 10px;
   background-color: ${(props) => props.theme.background};
-  min-height: 140px;
+  min-height: 155px;
 `;
 const SliderWrapper = styled(Slider)`
   margin: 0 1px;
