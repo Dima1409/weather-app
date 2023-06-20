@@ -179,7 +179,7 @@ const NextDaysData: React.FC = () => {
 
     return (
       <LoadInfo>
-        {temperatures ? (
+        {minTemp && maxTemp ? (
           <>
             <LoadDate>
               {new Date(
