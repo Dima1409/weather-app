@@ -173,7 +173,6 @@ const NextDaysData: React.FC = () => {
 
   const renderWeatherInfo = (offset: number) => {
     const filteredData = getFilteredData(offset);
-    console.log('filteredData!!',filteredData);
     const temperatures = filteredData?.map((item) => item.main.temp);
     const minTemp = temperatures ? Math.min(...temperatures) : undefined;
     const maxTemp = temperatures ? Math.max(...temperatures) : undefined;
@@ -192,30 +191,32 @@ const NextDaysData: React.FC = () => {
             )
           </span>
         </LoadDate>
-        <LoadTemp>
-          <MinMaxTemp>Max:</MinMaxTemp> {maxTemp?.toFixed(1)} °C
-        </LoadTemp>
-        <LoadTemp>
-          <MinMaxTemp>Min:</MinMaxTemp> {minTemp?.toFixed(1)} °C
-        </LoadTemp>
+        {temperatures ? (
+          <>
+            <LoadTemp>
+              <MinMaxTemp>Max:</MinMaxTemp> {maxTemp?.toFixed(1)} °C
+            </LoadTemp>
+            <LoadTemp>
+              <MinMaxTemp>Min:</MinMaxTemp> {minTemp?.toFixed(1)} °C
+            </LoadTemp>
+          </>
+        ) : (
+          <SpinnerCircular
+            style={{ display: "block", margin: "0 auto" }}
+          ></SpinnerCircular>
+        )}
       </LoadInfo>
     );
   };
 
   return (
-    <>
-      {searchFive ? (
-        <SliderWrapper {...settings}>
-          {renderWeatherInfo(0)}
-          {renderWeatherInfo(1)}
-          {renderWeatherInfo(2)}
-          {renderWeatherInfo(3)}
-          {renderWeatherInfo(4)}
-        </SliderWrapper>
-      ) : (
-        <SpinnerCircular style={{ display: "block", margin: "0 auto" }} />
-      )}
-    </>
+    <SliderWrapper {...settings}>
+      {renderWeatherInfo(0)}
+      {renderWeatherInfo(1)}
+      {renderWeatherInfo(2)}
+      {renderWeatherInfo(3)}
+      {renderWeatherInfo(4)}
+    </SliderWrapper>
   );
 };
 
