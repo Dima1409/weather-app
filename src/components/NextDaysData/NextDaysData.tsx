@@ -131,6 +131,7 @@ import {
   SliderWrapper,
 } from "../AdditionalData/AdditionalData.styled";
 import { MinMaxTemp } from "./NextDays.styled";
+import { SpinnerCircular } from "spinners-react";
 
 const NextDaysData: React.FC = () => {
   const settings = {
@@ -178,24 +179,30 @@ const NextDaysData: React.FC = () => {
 
     return (
       <LoadInfo>
-        <LoadDate>
-          {new Date(
-            currentDate.getTime() + 86400000 * (offset + 1)
-          ).toLocaleDateString()}
-          <span>
-            (
-            {new Date(
-              new Date().getTime() + 86400000 * (offset + 1)
-            ).toLocaleString("en-US", { weekday: "long" })}
-            )
-          </span>
-        </LoadDate>
-        <LoadTemp>
-          <MinMaxTemp>Max:</MinMaxTemp> {maxTemp?.toFixed(1)} °C
-        </LoadTemp>
-        <LoadTemp>
-          <MinMaxTemp>Min:</MinMaxTemp> {minTemp?.toFixed(1)} °C
-        </LoadTemp>
+        {temperatures ? (
+          <>
+            <LoadDate>
+              {new Date(
+                currentDate.getTime() + 86400000 * (offset + 1)
+              ).toLocaleDateString()}
+              <span>
+                (
+                {new Date(
+                  new Date().getTime() + 86400000 * (offset + 1)
+                ).toLocaleString("en-US", { weekday: "long" })}
+                )
+              </span>
+            </LoadDate>
+            <LoadTemp>
+              <MinMaxTemp>Max:</MinMaxTemp> {maxTemp?.toFixed(1)} °C
+            </LoadTemp>
+            <LoadTemp>
+              <MinMaxTemp>Min:</MinMaxTemp> {minTemp?.toFixed(1)} °C
+            </LoadTemp>
+          </>
+        ) : (
+          <SpinnerCircular style={{ display: "block", margin: "0 auto" }} />
+        )}
       </LoadInfo>
     );
   };
