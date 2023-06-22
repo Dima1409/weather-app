@@ -7,6 +7,7 @@ const LoadInfo = styled.div`
   align-items: center;
   flex-direction: row;
   font-size: 12px;
+  padding: 6px 0;
   border-radius: 10px;
   background-color: ${(props) => props.theme.background};
   min-height: 155px;

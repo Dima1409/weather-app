@@ -11,8 +11,6 @@ import {
   Rain,
   MinMaxTemp,
   Image,
-  IconLow,
-  IconMax,
   IconWind,
   FewDaysWrapper,
 } from "./NextDays.styled";
@@ -97,7 +95,12 @@ const NextDaysData: React.FC = () => {
 
     const renderCloudIcon = (): ReactNode => {
       const percentC: number | undefined = Number(percentCloudiness?.toFixed());
-      switch (true) {
+      const percentR: number | undefined = Number(changeOfRain.toFixed());
+        switch (true) {
+        case percentR >= 50 && percentC <= 20 :
+          return <Image src={`${urlIcon}10d.png`} alt='rain'></Image>;
+        case percentR >= 50 && percentC <= 100 :
+          return <Image src={`${urlIcon}09d.png`} alt='rain'></Image>
         case percentC <= 20:
           return <Image src={`${urlIcon}01d.png`} alt="clear sky" />;
         case percentC <= 40:
@@ -126,7 +129,7 @@ const NextDaysData: React.FC = () => {
             ).toLocaleString("en-US", { weekday: "long" })}
           </DayOfWeek>
         </div>
-        <Rain>Rain: {changeOfRain.toFixed()} %</Rain>
+        <Rain>Rain: {changeOfRain.toFixed()} %</Rain> 
         <div>{renderCloudIcon()}</div>
         {loading ? (
           <SpinnerCircular
@@ -134,18 +137,18 @@ const NextDaysData: React.FC = () => {
           ></SpinnerCircular>
         ) : (
           <>
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <div>
               <FewDaysWrapper>
-                <IconLow size={20}></IconLow>
+                <MinMaxTemp>min:</MinMaxTemp>
                 <MinMaxTemp>{minTemp?.toFixed(1)} °C</MinMaxTemp>
               </FewDaysWrapper>
               <FewDaysWrapper>
-                <IconMax size={20}></IconMax>
+                <MinMaxTemp>max:</MinMaxTemp>
                 <MinMaxTemp>{maxTemp?.toFixed(1)} °C</MinMaxTemp>
               </FewDaysWrapper>
             </div>
             <FewDaysWrapper>
-              <IconWind size={20}></IconWind>
+              <IconWind size={16}></IconWind>
               <MinMaxTemp>
                 {minSpeed?.toFixed(1)}...{maxSpeed?.toFixed(1)} m/s
               </MinMaxTemp>

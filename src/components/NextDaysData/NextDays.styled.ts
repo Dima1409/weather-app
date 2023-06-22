@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { theme } from "utils/theme";
-import { FaTemperatureLow, FaTemperatureHigh, FaWind } from "react-icons/fa";
+import { FaWind } from "react-icons/fa";
 import { LoadDate } from "components/AdditionalData/AdditionalData.styled";
 
 const MainDate = styled(LoadDate)`
@@ -13,9 +13,9 @@ const DayOfWeek = styled(LoadDate)`
 `;
 
 const MinMaxTemp = styled.span`
-  font-size: ${theme.fontSizes.base}px;
+  font-size: ${theme.fontSizes.small}px;
   color: ${(props) => props.theme.text};
-  margin-left: 4px;
+  margin-left: 10px;
 `;
 
 const Rain = styled.p`
@@ -29,12 +29,7 @@ const Image = styled.img`
   display: block;
   margin: 0 auto;
 `;
-const IconLow = styled(FaTemperatureLow)`
-  color: ${(props) => props.theme.text};
-`;
-const IconMax = styled(FaTemperatureHigh)`
-  color: ${(props) => props.theme.text};
-`;
+
 const IconWind = styled(FaWind)`
   color: ${(props) => props.theme.text};
 `;
@@ -51,8 +46,6 @@ export {
   Rain,
   MinMaxTemp,
   Image,
-  IconLow,
-  IconMax,
   IconWind,
   FewDaysWrapper
 };

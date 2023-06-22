@@ -29,6 +29,7 @@ const AdditionalData: React.FC = () => {
         const dataFiveDays: ISearchFiveDays = await searchFiveDays(
           localStorage.getItem("weather-value") || ""
         );
+        console.log(dataFiveDays.list.slice(0, 10));
         setSearchFive(dataFiveDays);
       } catch (error) {
         console.log(error);

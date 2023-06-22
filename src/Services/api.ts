@@ -21,7 +21,6 @@ const searchFiveDays = async (value: string): Promise<any> => {
     const { data }: AxiosResponse<any> = await axios.get(
       `${process.env.REACT_APP_FIVE_DAYS}?q=${value}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
     );
-    // console.log(data)
     return data;
   } catch (error) {
     console.log(error);
