@@ -62,4 +62,4 @@ const themes: Record<"light" | "dark", TTheme> = {
   },
 };
 
-export { theme, themes };
+export { theme, themes, breakpoints };

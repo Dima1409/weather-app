@@ -1,0 +1,27 @@
+{
+    "main": {
+        "search": {
+            "placeholder": "Введіть місто",
+            "search": "Пошук"
+        },
+        "pressure": {
+            "press": "ТИСК",
+            "mm": "мм"
+        },
+        "humidity": "ВОЛОГІСТЬ",
+        "wind": {
+            "main": "ВІТЕР",
+            "speed": "м/с"
+        },
+        "feels_like": "ВІДЧУВАЄТЬСЯ ЯК",
+        "day": {
+            "today": "Сьогодні",
+            "tomorrow": "Завтра"
+        },
+        "rain": "Дощ",
+        "temp": {
+            "min": "мін",
+            "max": "макс"
+        }
+    }
+}

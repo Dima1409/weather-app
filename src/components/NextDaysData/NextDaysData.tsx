@@ -15,14 +15,41 @@ import {
   FewDaysWrapper,
 } from "./NextDays.styled";
 import { SpinnerCircular } from "spinners-react";
+import { useMediaQuery } from "react-responsive";
+import { breakpoints } from "utils/theme";
+import { useTranslation } from "react-i18next";
 
 const NextDaysData: React.FC = () => {
+  const isSmallScreen = useMediaQuery({
+    query: `(max-width: ${breakpoints.mob}px)`,
+  });
+  const isMediumScreen = useMediaQuery({
+    query: `(max-width: ${breakpoints.tab}px)`,
+  });
+  const isLargeScreen = useMediaQuery({
+    query: `(min-width: ${breakpoints.tab}px)`,
+  });
+
+  let slidesToShow;
+  let slidesToScroll;
+
+  if (isSmallScreen) {
+    slidesToShow = 2;
+    slidesToScroll = 1;
+  } else if (isMediumScreen) {
+    slidesToShow = 2;
+    slidesToScroll = 1;
+  } else if (isLargeScreen) {
+    slidesToShow = 4;
+    slidesToScroll = 3;
+  }
+
   const settings = {
     dots: true,
     infinite: false,
     speed: 1000,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: slidesToShow,
+    slidesToScroll: slidesToScroll,
     arrows: false,
     autoplaySpeed: 3000,
   };
@@ -30,13 +57,18 @@ const NextDaysData: React.FC = () => {
   const currentDate = new Date();
   const [searchFive, setSearchFive] = useState<ISearchFiveDays>();
   const [loading, setLoading] = useState<boolean>(false);
+  const dayLang = localStorage.getItem("weather-lang");
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function getAdditional() {
       setLoading(true);
+      const value = localStorage.getItem("weather-value") || "";
+      const lang = localStorage.getItem("weather-lang");
       try {
         const dataFiveDays: ISearchFiveDays = await searchFiveDays(
-          localStorage.getItem("weather-value") || ""
+          value,
+          lang || "en"
         );
         setSearchFive(dataFiveDays);
       } catch (error) {
@@ -96,11 +128,11 @@ const NextDaysData: React.FC = () => {
     const renderCloudIcon = (): ReactNode => {
       const percentC: number | undefined = Number(percentCloudiness?.toFixed());
       const percentR: number | undefined = Number(changeOfRain.toFixed());
-        switch (true) {
-        case percentR >= 50 && percentC <= 20 :
-          return <Image src={`${urlIcon}10d.png`} alt='rain'></Image>;
-        case percentR >= 50 && percentC <= 100 :
-          return <Image src={`${urlIcon}09d.png`} alt='rain'></Image>
+      switch (true) {
+        case percentR >= 50 && percentC <= 20:
+          return <Image src={`${urlIcon}10d.png`} alt="rain"></Image>;
+        case percentR >= 50 && percentC <= 100:
+          return <Image src={`${urlIcon}09d.png`} alt="rain"></Image>;
         case percentC <= 20:
           return <Image src={`${urlIcon}01d.png`} alt="clear sky" />;
         case percentC <= 40:
@@ -124,12 +156,21 @@ const NextDaysData: React.FC = () => {
           </MainDate>
 
           <DayOfWeek>
-            {new Date(
-              new Date().getTime() + 86400000 * (offset + 1)
-            ).toLocaleString("en-US", { weekday: "long" })}
+            {new Date(new Date().getTime() + 86400000 * (offset + 1))
+              .toLocaleString(`${dayLang === "en" ? "en" : "uk"}`, {
+                weekday: "long",
+              })[0]
+              .toUpperCase() +
+              new Date(new Date().getTime() + 86400000 * (offset + 1))
+                .toLocaleString(`${dayLang === "en" ? "en" : "uk"}`, {
+                  weekday: "long",
+                })
+                .slice(1)}
           </DayOfWeek>
         </div>
-        <Rain>Rain: {changeOfRain.toFixed()} %</Rain> 
+        <Rain>
+          {t("main.rain")}: {changeOfRain.toFixed()} %
+        </Rain>
         <div>{renderCloudIcon()}</div>
         {loading ? (
           <SpinnerCircular
@@ -139,18 +180,19 @@ const NextDaysData: React.FC = () => {
           <>
             <div>
               <FewDaysWrapper>
-                <MinMaxTemp>min:</MinMaxTemp>
+                <MinMaxTemp>{t("main.temp.min")}:</MinMaxTemp>
                 <MinMaxTemp>{minTemp?.toFixed(1)} °C</MinMaxTemp>
               </FewDaysWrapper>
               <FewDaysWrapper>
-                <MinMaxTemp>max:</MinMaxTemp>
+                <MinMaxTemp>{t("main.temp.max")}:</MinMaxTemp>
                 <MinMaxTemp>{maxTemp?.toFixed(1)} °C</MinMaxTemp>
               </FewDaysWrapper>
             </div>
             <FewDaysWrapper>
               <IconWind size={16}></IconWind>
               <MinMaxTemp>
-                {minSpeed?.toFixed(1)}...{maxSpeed?.toFixed(1)} m/s
+                {minSpeed?.toFixed(1)}...{maxSpeed?.toFixed(1)}{" "}
+                {t("main.wind.speed")}
               </MinMaxTemp>
             </FewDaysWrapper>
           </>

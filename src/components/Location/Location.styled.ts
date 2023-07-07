@@ -6,10 +6,14 @@ const LocationWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  margin: 0 auto;
   border: 1px solid transparent;
   border-radius: 20px;
   background-color: ${(props) => props.theme.background};
   box-shadow: 0 0 4px ${(props) => props.theme.text};
+  ${theme.mq.tablet} {
+    width: 50%;
+  }
 `;
 const CityWrapper = styled.div`
   display: flex;
@@ -35,7 +39,7 @@ const Description = styled.div`
   justify-content: space-around;
   border: 1px solid transparent;
   border-radius: 20px;
-  padding: 4px;
+  padding: 20px 4px;
   margin-bottom: 5px;
   width: 80px;
   opacity: 0.9;
@@ -45,8 +49,27 @@ const Description = styled.div`
   font-weight: ${theme.fontWeights.medium};
   color: white;
 `;
+const SunInfo = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  background-color: ${(props) => props.theme.background};
+  box-shadow: 0 0 4px ${(props) => props.theme.text};
+  border-radius: 20px;
+  margin-bottom: 12px;
+  padding: 20px 4px;
+  ${theme.mq.tablet} {
+    width: 80%;
+  }
+`;
 const TextInfo = styled.span`
   color: ${(props) => props.theme.text};
+  display: flex;
+  align-items: center;
+  & > span {
+    margin-left: 10px;
+  }
 `;
 const CityMain = styled.p`
   font-size: ${theme.fontSizes.large}px;
@@ -62,5 +85,6 @@ export {
   Description,
   CityMain,
   DescriptionWrapper,
-  TextInfo
+  SunInfo,
+  TextInfo,
 };

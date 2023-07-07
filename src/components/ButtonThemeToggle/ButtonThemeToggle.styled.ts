@@ -11,13 +11,13 @@ color: ${(props) => props.theme.text};
 const Toggle = styled.label` 
   position: relative;
   display: inline-block;
-  width: 50px;
-  height: 25px;
+  width: 40px;
+  height: 20px;
   margin: 0 0.25rem;
   & > input[type="checkbox"] {
     display: none;
     &:checked + span::before {
-      transform: translateX(25px);
+      transform: translateX(20px);
       background-color: ${(props) => props.theme.enabled};
     }
     &:checked + span {
@@ -28,7 +28,7 @@ const Toggle = styled.label`
   position: absolute;
   cursor: pointer;
   background-color: ${(props) => props.theme.accent};
-  border-radius: 25px;
+  border-radius: 20px;
   top: 0;
   right: 0;
   bottom: 0;
@@ -39,8 +39,8 @@ const Toggle = styled.label`
   content: "";
   left: 2px;
   top: 2px;
-  width: 21px;
-  height: 21px;
+  width: 16px;
+  height: 16px;
   background-color: ${(props) => props.theme.enabled};
   border-radius: 50%;
   transition: transform 0.3s ease;

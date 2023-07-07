@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Form, InputForm, BtnSubmit } from "./SearchForm.styled";
+import { InputForm, BtnSubmit } from "./SearchForm.styled";
+import { useTranslation } from "react-i18next";
 
 interface FormProps {
   onSubmit: (query: string) => void;
@@ -7,7 +8,7 @@ interface FormProps {
 
 const SearchForm: React.FC<FormProps> = ({ onSubmit }) => {
   const [query, setQuery] = useState<string>("");
-
+  const { t } = useTranslation();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setQuery(e.target.value.toLowerCase());
   };
@@ -18,18 +19,18 @@ const SearchForm: React.FC<FormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <InputForm
         type="text"
         value={query}
         name="value"
         onChange={handleChange}
-        placeholder="Chose location"
+        placeholder={t("main.search.placeholder")}
       />
       <BtnSubmit type="submit" disabled={query.trim() === ""}>
-        Search
+      {t("main.search.search")}
       </BtnSubmit>
-    </Form>
+    </form>
   );
 };
 

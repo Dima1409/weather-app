@@ -6,21 +6,26 @@ import {
   Description,
   CityMain,
   DescriptionWrapper,
+  SunInfo,
   TextInfo,
 } from "./Location.styled";
 import { GiSunrise, GiSunset } from "react-icons/gi";
+import { Suspense } from "react";
+import { useTranslation } from "react-i18next";
+
 
 interface LocationProps {
   results: ISearchData;
 }
 
 const Location: React.FC<LocationProps> = ({ results }) => {
+  const { t } = useTranslation();
   const { name, main, sys, weather, wind } = results;
   const urlIcon = process.env.REACT_APP_ICON_URL;
   const iconLink = `${urlIcon}${weather[0].icon}@4x.png`;
 
   return (
-    <>
+    <Suspense fallback='loading...'>
       {results && (
         <>
           <LocationWrapper>
@@ -32,7 +37,7 @@ const Location: React.FC<LocationProps> = ({ results }) => {
               </CityMain>
               <CityMain>{main.temp.toFixed(1)} °C</CityMain>
               <TextInfo>
-                (FEELS LIKE {main.feels_like.toFixed(1)} °C)
+                ({t('main.feels_like')} {main.feels_like.toFixed(1)} °C)
               </TextInfo>
               <CityMain>
                 {weather[0].description.charAt(0).toUpperCase() +
@@ -42,59 +47,36 @@ const Location: React.FC<LocationProps> = ({ results }) => {
           </LocationWrapper>
           <DescriptionWrapper>
             <Description>
-              <TextInfo>PRESSURE</TextInfo>
-              <TextInfo>{main.pressure} hPa</TextInfo> 
+              <TextInfo>{t('main.pressure.press')}</TextInfo>
+              <TextInfo>{main.pressure*0.75} {t('main.pressure.mm')}</TextInfo> 
             </Description>
             <Description>
-              <TextInfo>HUMIDITY</TextInfo>
+              <TextInfo>{t('main.humidity')}</TextInfo>
               <TextInfo>{main.humidity} %</TextInfo> 
             </Description>
             <Description>
-              <TextInfo>WIND</TextInfo>
-              <TextInfo>{wind.speed} m/s</TextInfo> 
+              <TextInfo>{t('main.wind.main')}</TextInfo>
+              <TextInfo>{wind.speed} {t('main.wind.speed')}</TextInfo> 
             </Description>
           </DescriptionWrapper>
-          <DescriptionWrapper>
-            <Description
-              style={{
-                width: "100%",
-                flexDirection: "row",
-                alignItems: "end",
-                justifyContent: "space-between",
-                padding: "0 20px 5px",
-              }}
-            >
-              <TextInfo
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
+          <SunInfo> 
+          <TextInfo>
                 <GiSunrise size={"40px"} />
                 <TextInfo>
                   {new Date(sys.sunrise * 1000).toLocaleString().slice(12, 24)}
                 </TextInfo>
-              </TextInfo>{" "}
-              <TextInfo
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
+              </TextInfo>
+              <TextInfo>
                 <GiSunset size={"40px"} />
                 <TextInfo>
                   {new Date(sys.sunset * 1000).toLocaleString().slice(12, 24)}
                 </TextInfo>
-              </TextInfo>{" "}
-            </Description>
-          </DescriptionWrapper>
+              </TextInfo>
+          </SunInfo>
+             
         </>
       )}
-    </>
+    </Suspense>
   );
 };
 export default Location;

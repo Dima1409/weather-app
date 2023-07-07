@@ -12,6 +12,7 @@ import { ISearchData } from "types/data";
 import { Global } from "./App.styled";
 import AdditionalData from "components/AdditionalData";
 import NextDaysData from "components/NextDaysData";
+import ChangeLanguage from "components/ChangeLanguage/ChangeLanguage";
 
 function App(): JSX.Element {
   const [currentTheme, setCurrentTheme] = useState(
@@ -28,19 +29,21 @@ function App(): JSX.Element {
   const [searchValue, setSearchValue] = useState<string>(
     localStorage.getItem("weather-value") || ""
   );
+  const [searchLang, setSearchLang] = useState<string>(
+    localStorage.getItem("weather-lang") || "en"
+  );
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (
-      searchValue === "" ||
-      searchValue.toLowerCase() === result?.name.toLowerCase()
+      searchValue === ""
     ) {
       return;
     }
     async function getLocation() {
       setLoading(true);
       try {
-        const data: ISearchData = await baseSearch(searchValue);
+        const data: ISearchData = await baseSearch(searchValue, searchLang);
         localStorage.setItem("weather-value", searchValue);
         setResult(data);
       } catch (error) {
@@ -50,7 +53,7 @@ function App(): JSX.Element {
       }
     }
     getLocation();
-  }, [result?.name, searchValue]);
+  }, [result?.name, searchValue, searchLang]);
   const handleFormSubmit = (value: string): void => {
     reset();
     setSearchValue(value);
@@ -65,6 +68,10 @@ function App(): JSX.Element {
       <ThemeContext.Provider value={{ currentTheme, switchTheme }}>
         <Header>
           <SearchForm onSubmit={handleFormSubmit} />
+          <ChangeLanguage
+            lang={searchLang}
+            onChangeLanguage={setSearchLang}
+          ></ChangeLanguage>
         </Header>
         <Container>
           <Global />
@@ -74,14 +81,20 @@ function App(): JSX.Element {
               secondaryColor={currentTheme.background}
               style={{ display: "block", margin: "0 auto" }}
             />
-          ) : result ? (
+          ) : result && searchValue ? (
             <>
               <Location results={result} />
               <AdditionalData></AdditionalData>
               <NextDaysData></NextDaysData>
             </>
           ) : (
-            <>There are not result, please try again</>
+            <>
+              {!searchValue && !result ? (
+                <div>try it</div>
+              ) : (
+                <div>There are not result, please try again</div>
+              )}
+            </>
           )}
         </Container>
       </ThemeContext.Provider>

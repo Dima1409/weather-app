@@ -1,0 +1,27 @@
+{
+    "main": {
+        "search": {
+            "placeholder": "Enter the city",
+            "search": "Search"
+        },
+        "pressure": {
+            "press": "PRESSURE",
+            "mm": "mm"
+        },
+        "humidity": "HUMIDITY",
+        "wind": {
+            "main": "WIND",
+            "speed": "m/s"
+        },
+        "feels_like": "FEELS LIKE",
+        "day": {
+            "today": "Today",
+            "tomorrow": "Tomorrow"
+        },
+        "rain": "Rain",
+        "temp": {
+            "min": "min",
+            "max": "max"
+        }
+    }
+}
