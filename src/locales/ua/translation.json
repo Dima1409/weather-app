@@ -5,15 +5,15 @@
             "search": "Пошук"
         },
         "pressure": {
-            "press": "ТИСК",
+            "press": "Тиск",
             "mm": "мм"
         },
-        "humidity": "ВОЛОГІСТЬ",
+        "humidity": "Вологість",
         "wind": {
-            "main": "ВІТЕР",
+            "main": "Вітер",
             "speed": "м/с"
         },
-        "feels_like": "ВІДЧУВАЄТЬСЯ ЯК",
+        "feels_like": "Відчувається як",
         "day": {
             "today": "Сьогодні",
             "tomorrow": "Завтра"

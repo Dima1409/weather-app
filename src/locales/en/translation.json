@@ -5,15 +5,15 @@
             "search": "Search"
         },
         "pressure": {
-            "press": "PRESSURE",
+            "press": "Pressure",
             "mm": "mm"
         },
-        "humidity": "HUMIDITY",
+        "humidity": "Humidity",
         "wind": {
-            "main": "WIND",
+            "main": "Wind",
             "speed": "m/s"
         },
-        "feels_like": "FEELS LIKE",
+        "feels_like": "Feels like",
         "day": {
             "today": "Today",
             "tomorrow": "Tomorrow"

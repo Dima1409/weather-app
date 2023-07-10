@@ -70,6 +70,7 @@ const NextDaysData: React.FC = () => {
           value,
           lang || "en"
         );
+        console.log(dataFiveDays);
         setSearchFive(dataFiveDays);
       } catch (error) {
         console.log(error);
@@ -101,7 +102,7 @@ const NextDaysData: React.FC = () => {
       (item) => item.weather[0].description
     );
     const countRain: number | undefined = rain?.filter((count) =>
-      count.includes("rain")
+      count.includes("rain") ||  count.includes("дощ")
     ).length;
     const changeOfRain: number =
       countRain && rain ? (countRain * 100) / rain.length : 0;
