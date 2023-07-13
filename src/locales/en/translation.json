@@ -1,5 +1,6 @@
 {
     "main": {
+        "welcome": "Welcome to the weather app! Here you can determine the weather conditions for the city you specified in the search form, while your last query will be saved and its results will be displayed on the next visit",
         "search": {
             "placeholder": "Enter the city",
             "search": "Search"

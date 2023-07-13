@@ -48,7 +48,7 @@ const Location: React.FC<LocationProps> = ({ results }) => {
           <DescriptionWrapper>
             <Description>
               <TextInfo>{t('main.pressure.press')}</TextInfo>
-              <TextInfo>{main.pressure*0.75} {t('main.pressure.mm')}</TextInfo> 
+              <TextInfo>{Number(main.pressure*0.75).toFixed()} {t('main.pressure.mm')}</TextInfo> 
             </Description>
             <Description>
               <TextInfo>{t('main.humidity')}</TextInfo>

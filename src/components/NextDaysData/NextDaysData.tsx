@@ -1,6 +1,8 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import { ReactNode } from "react";
 import { ISearchFiveDays } from "types/data";
-import { searchFiveDays } from "Services/api";
+import { useMediaQuery } from "react-responsive";
+import { breakpoints } from "utils/theme";
+import { useTranslation } from "react-i18next";
 import {
   LoadInfo,
   SliderWrapper,
@@ -14,12 +16,15 @@ import {
   IconWind,
   FewDaysWrapper,
 } from "./NextDays.styled";
-import { SpinnerCircular } from "spinners-react";
-import { useMediaQuery } from "react-responsive";
-import { breakpoints } from "utils/theme";
-import { useTranslation } from "react-i18next";
 
-const NextDaysData: React.FC = () => {
+interface NextDaysDataProps {
+  results: ISearchFiveDays | undefined;
+}
+
+const NextDaysData: React.FC<NextDaysDataProps> = ({results}) => {
+  const currentDate = new Date();
+  const dayLang = localStorage.getItem("weather-lang");
+  const { t } = useTranslation();
   const isSmallScreen = useMediaQuery({
     query: `(max-width: ${breakpoints.mob}px)`,
   });
@@ -54,38 +59,11 @@ const NextDaysData: React.FC = () => {
     autoplaySpeed: 3000,
   };
 
-  const currentDate = new Date();
-  const [searchFive, setSearchFive] = useState<ISearchFiveDays>();
-  const [loading, setLoading] = useState<boolean>(false);
-  const dayLang = localStorage.getItem("weather-lang");
-  const { t } = useTranslation();
-
-  useEffect(() => {
-    async function getAdditional() {
-      setLoading(true);
-      const value = localStorage.getItem("weather-value") || "";
-      const lang = localStorage.getItem("weather-lang");
-      try {
-        const dataFiveDays: ISearchFiveDays = await searchFiveDays(
-          value,
-          lang || "en"
-        );
-        console.log(dataFiveDays);
-        setSearchFive(dataFiveDays);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    getAdditional();
-  }, []);
-
   const getFilteredData = (offset: number) => {
     const targetDate = new Date(
       currentDate.getTime() + 86400000 * (offset + 1)
     );
-    return searchFive?.list.filter((elem) => {
+    return results?.list.filter((elem) => {
       const elemDate = new Date(elem.dt_txt).getDate();
       return elemDate === targetDate.getDate();
     });
@@ -101,8 +79,8 @@ const NextDaysData: React.FC = () => {
     const rain: string[] | undefined = filteredData?.map(
       (item) => item.weather[0].description
     );
-    const countRain: number | undefined = rain?.filter((count) =>
-      count.includes("rain") ||  count.includes("дощ")
+    const countRain: number | undefined = rain?.filter(
+      (count) => count.includes("rain") || count.includes("дощ")
     ).length;
     const changeOfRain: number =
       countRain && rain ? (countRain * 100) / rain.length : 0;
@@ -173,43 +151,37 @@ const NextDaysData: React.FC = () => {
           {t("main.rain")}: {changeOfRain.toFixed()} %
         </Rain>
         <div>{renderCloudIcon()}</div>
-        {loading ? (
-          <SpinnerCircular
-            style={{ display: "block", margin: "0 auto" }}
-          ></SpinnerCircular>
-        ) : (
-          <>
-            <div>
-              <FewDaysWrapper>
-                <MinMaxTemp>{t("main.temp.min")}:</MinMaxTemp>
-                <MinMaxTemp>{minTemp?.toFixed(1)} °C</MinMaxTemp>
-              </FewDaysWrapper>
-              <FewDaysWrapper>
-                <MinMaxTemp>{t("main.temp.max")}:</MinMaxTemp>
-                <MinMaxTemp>{maxTemp?.toFixed(1)} °C</MinMaxTemp>
-              </FewDaysWrapper>
-            </div>
-            <FewDaysWrapper>
-              <IconWind size={16}></IconWind>
-              <MinMaxTemp>
-                {minSpeed?.toFixed(1)}...{maxSpeed?.toFixed(1)}{" "}
-                {t("main.wind.speed")}
-              </MinMaxTemp>
-            </FewDaysWrapper>
-          </>
-        )}
+        <div>
+          <FewDaysWrapper>
+            <MinMaxTemp>{t("main.temp.min")}:</MinMaxTemp>
+            <MinMaxTemp>{minTemp?.toFixed(1)} °C</MinMaxTemp>
+          </FewDaysWrapper>
+          <FewDaysWrapper>
+            <MinMaxTemp>{t("main.temp.max")}:</MinMaxTemp>
+            <MinMaxTemp>{maxTemp?.toFixed(1)} °C</MinMaxTemp>
+          </FewDaysWrapper>
+        </div>
+        <FewDaysWrapper>
+          <IconWind size={16}></IconWind>
+          <MinMaxTemp>
+            {minSpeed?.toFixed(1)}...{maxSpeed?.toFixed(1)}{" "}
+            {t("main.wind.speed")}
+          </MinMaxTemp>
+        </FewDaysWrapper>
       </LoadInfo>
     );
   };
 
   return (
-    <SliderWrapper {...settings}>
-      {renderWeatherInfo(0)}
-      {renderWeatherInfo(1)}
-      {renderWeatherInfo(2)}
-      {renderWeatherInfo(3)}
-      {renderWeatherInfo(4)}
-    </SliderWrapper>
+    <>
+      <SliderWrapper {...settings}>
+        {renderWeatherInfo(0)}
+        {renderWeatherInfo(1)}
+        {renderWeatherInfo(2)}
+        {renderWeatherInfo(3)}
+        {renderWeatherInfo(4)}
+      </SliderWrapper>
+    </>
   );
 };
 
