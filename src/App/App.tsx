@@ -80,7 +80,7 @@ const App = () => {
           <Global />
           {loading ? (
             <SpinnerCircular
-              color={currentTheme.accent}
+              color={currentTheme.text}
               secondaryColor={currentTheme.background}
               style={{ display: "block", margin: "0 auto" }}
             />

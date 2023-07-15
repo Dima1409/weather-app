@@ -3,12 +3,21 @@ import { theme } from "utils/theme";
 import { FaWind } from "react-icons/fa";
 import { LoadDate } from "components/AdditionalData/AdditionalData.styled";
 
+const DateWrapper = styled.div`
+display: flex;
+justify-content: space-around;
+align-items: center;
+margin-bottom: 6px;
+`;
+
 const MainDate = styled(LoadDate)`
   font-size: ${theme.fontSizes.small}px;
+  text-decoration: underline;
 `;
 
 const DayOfWeek = styled(LoadDate)`
-  font-size: ${theme.fontSizes.medium}px;
+  font-size: ${theme.fontSizes.small}px;
+  text-decoration: underline;
   margin: 0;
 `;
 
@@ -41,6 +50,7 @@ margin: 5px 0;
 `
 
 export {
+  DateWrapper,
   MainDate,
   DayOfWeek,
   Rain,

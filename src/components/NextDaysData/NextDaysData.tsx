@@ -8,6 +8,7 @@ import {
   SliderWrapper,
 } from "../AdditionalData/AdditionalData.styled";
 import {
+  DateWrapper,
   MainDate,
   DayOfWeek,
   Rain,
@@ -16,12 +17,13 @@ import {
   IconWind,
   FewDaysWrapper,
 } from "./NextDays.styled";
+import { sliderSettings } from "utils/sliderSettings";
 
 interface NextDaysDataProps {
   results: ISearchFiveDays | undefined;
 }
 
-const NextDaysData: React.FC<NextDaysDataProps> = ({results}) => {
+const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
   const currentDate = new Date();
   const dayLang = localStorage.getItem("weather-lang");
   const { t } = useTranslation();
@@ -31,12 +33,9 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({results}) => {
   const isMediumScreen = useMediaQuery({
     query: `(max-width: ${breakpoints.tab}px)`,
   });
-  const isLargeScreen = useMediaQuery({
-    query: `(min-width: ${breakpoints.tab}px)`,
-  });
 
-  let slidesToShow;
-  let slidesToScroll;
+  let slidesToShow = 4;
+  let slidesToScroll = 3;
 
   if (isSmallScreen) {
     slidesToShow = 2;
@@ -44,20 +43,9 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({results}) => {
   } else if (isMediumScreen) {
     slidesToShow = 2;
     slidesToScroll = 1;
-  } else if (isLargeScreen) {
-    slidesToShow = 4;
-    slidesToScroll = 3;
   }
 
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 1000,
-    slidesToShow: slidesToShow,
-    slidesToScroll: slidesToScroll,
-    arrows: false,
-    autoplaySpeed: 3000,
-  };
+  const settings = sliderSettings(slidesToShow, slidesToScroll);
 
   const getFilteredData = (offset: number) => {
     const targetDate = new Date(
@@ -127,13 +115,7 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({results}) => {
 
     return (
       <LoadInfo>
-        <div>
-          <MainDate>
-            {new Date(currentDate.getTime() + 86400000 * (offset + 1))
-              .toLocaleDateString()
-              .slice(0, 5)}
-          </MainDate>
-
+        <DateWrapper>
           <DayOfWeek>
             {new Date(new Date().getTime() + 86400000 * (offset + 1))
               .toLocaleString(`${dayLang === "en" ? "en" : "uk"}`, {
@@ -146,7 +128,12 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({results}) => {
                 })
                 .slice(1)}
           </DayOfWeek>
-        </div>
+          <MainDate>
+            {new Date(currentDate.getTime() + 86400000 * (offset + 1))
+              .toLocaleDateString()
+              .slice(0, 5)}
+          </MainDate>
+        </DateWrapper>
         <Rain>
           {t("main.rain")}: {changeOfRain.toFixed()} %
         </Rain>

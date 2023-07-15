@@ -17,8 +17,13 @@ const BtnSubmit = styled.button`
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   background-color: ${(props) => props.theme.enabled};
+  transition: 0.3s all;
   &:disabled {
     background-color: ${(props) => props.theme.disabled};
+  }
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    cursor: pointer;
   }
 `;
 

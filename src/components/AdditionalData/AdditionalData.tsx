@@ -10,7 +10,9 @@ import {
   LoadDate,
   LoadTemp,
   Image,
+  Day
 } from "./AdditionalData.styled";
+import { sliderSettings } from "utils/sliderSettings";
 
 interface AdditionalDataProps {
   results: ISearchFiveDays | undefined;
@@ -19,10 +21,10 @@ interface AdditionalDataProps {
 const AdditionalData: React.FC<AdditionalDataProps> = ({results}) => {
   const { t } = useTranslation();
   const isSmallScreen = useMediaQuery({
-    query: `(max-width: ${breakpoints.mob}px)`,
-  });
-  const isMediumScreen = useMediaQuery({
     query: `(max-width: ${breakpoints.tab}px)`,
+  });
+  const isLargeScreen = useMediaQuery({
+    query: `(max-width: ${breakpoints.desk}px)`,
   });
 
   let slidesToShow = 5;
@@ -31,20 +33,12 @@ const AdditionalData: React.FC<AdditionalDataProps> = ({results}) => {
   if (isSmallScreen) {
     slidesToShow = 3;
     slidesToScroll = 2;
-  } else if (isMediumScreen) {
+  } else if (isLargeScreen) {
     slidesToShow = 4;
     slidesToScroll = 3;
   }
 
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 1000,
-    slidesToShow: slidesToShow,
-    slidesToScroll: slidesToScroll,
-    arrows: false,
-    autoplaySpeed: 3000,
-  };
+  const settings = sliderSettings(slidesToShow, slidesToScroll);
 
   const urlIcon = process.env.REACT_APP_ICON_URL;
   const currentDate = Number(new Date().toLocaleDateString().slice(0, 2));
@@ -58,12 +52,12 @@ const AdditionalData: React.FC<AdditionalDataProps> = ({results}) => {
               <LoadDate>
                 {currentDate === Number(elem.dt_txt.slice(8, 10)) ? (
                   <div>
-                    <div>{t("main.day.today")}</div>
+                    <Day>{t("main.day.today")}</Day>
                     <div>{elem.dt_txt.slice(10, elem.dt_txt.length - 3)}</div>
                   </div>
                 ) : (
                   <div>
-                    <div>{t("main.day.tomorrow")}</div>
+                    <Day>{t("main.day.tomorrow")}</Day>
                     <div>{elem.dt_txt.slice(10, elem.dt_txt.length - 3)}</div>
                   </div>
                 )}

@@ -48,6 +48,14 @@ const Description = styled.div`
   font-size: ${theme.fontSizes.small}px;
   font-weight: ${theme.fontWeights.medium};
   color: white;
+  & > span {
+    font-weight: ${theme.fontWeights.semiBold};
+    font-size: ${theme.fontSizes.medium}px;
+    color: ${(props) => props.theme.text};
+  }
+  & > svg {
+    color: ${(props) => props.theme.text};
+  }
 `;
 const SunInfo = styled.div`
   display: flex;
@@ -63,12 +71,15 @@ const SunInfo = styled.div`
     width: 80%;
   }
 `;
-const TextInfo = styled.span`
+const TextInfo = styled.p`
+  font-weight: ${theme.fontWeights.medium};
   color: ${(props) => props.theme.text};
   display: flex;
+  padding: 4px;
+  margin: 0;
   align-items: center;
   & > span {
-    margin-left: 10px;
+    margin-left: 6px;
   }
 `;
 const CityMain = styled.p`

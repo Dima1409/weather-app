@@ -10,6 +10,7 @@ import {
   TextInfo,
 } from "./Location.styled";
 import { GiSunrise, GiSunset } from "react-icons/gi";
+import { WiHumidity, WiStrongWind, WiBarometer} from "react-icons/wi";
 import { Suspense } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -47,16 +48,19 @@ const Location: React.FC<LocationProps> = ({ results }) => {
           </LocationWrapper>
           <DescriptionWrapper>
             <Description>
+            <WiBarometer size={"40px"} />
               <TextInfo>{t('main.pressure.press')}</TextInfo>
-              <TextInfo>{Number(main.pressure*0.75).toFixed()} {t('main.pressure.mm')}</TextInfo> 
+              <span>{Number(main.pressure*0.75).toFixed()} {t('main.pressure.mm')}</span> 
             </Description>
             <Description>
+            <WiHumidity size={"40px"} />
               <TextInfo>{t('main.humidity')}</TextInfo>
-              <TextInfo>{main.humidity} %</TextInfo> 
+              <span>{main.humidity} %</span> 
             </Description>
             <Description>
+            <WiStrongWind size={"40px"} />
               <TextInfo>{t('main.wind.main')}</TextInfo>
-              <TextInfo>{wind.speed} {t('main.wind.speed')}</TextInfo> 
+              <span>{wind.speed} {t('main.wind.speed')}</span> 
             </Description>
           </DescriptionWrapper>
           <SunInfo> 
