@@ -14,9 +14,9 @@ const Lang = styled.select`
   border-radius: 8px;
 `;
 const Icon = styled.svg`
-  width: 14px;
-  height: 14px;
-  margin-right: 3px;
+  width: 12px;
+  height: 12px;
+  margin-right: 2px;
 `;
 
 const Ua = styled(Icon).attrs({

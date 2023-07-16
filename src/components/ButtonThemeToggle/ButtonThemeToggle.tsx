@@ -14,7 +14,7 @@ const ButtonThemeToggle: React.FC<ButtonThemeProps> = ({
   return (
     <>
       <ThemeSwitch>
-        <IconContext.Provider value={{ size: "16px" }}>
+        <IconContext.Provider value={{ size: "12px" }}>
           <SvgSun/>
           <Toggle>
             <input type="checkbox" checked={check} onChange={chooseTheme}/>

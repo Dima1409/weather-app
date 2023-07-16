@@ -1,6 +1,12 @@
 {
     "main": {
-        "welcome": "Welcome to the weather app! Here you can determine the weather conditions for the city you specified in the search form, while your last query will be saved and its results will be displayed on the next visit",
+        "welcome": "Welcome to the weather app!",
+        "locale": "You can enter the name of the city in English or Ukrainian in the search form",
+        "info": "In the case of a successful request to the server, you will receive information on the current weather",
+        "infoThreeHours": "Weather information for every next three hours will also be displayed",
+        "infoNextFiveDays": "For convenience, additional slides with the weather for the next five days have been implemented",
+        "using": "Happy using",
+        "noResults": "No cities were found for your request, try again",
         "search": {
             "placeholder": "Enter the city",
             "search": "Search"

@@ -13,8 +13,8 @@ import Location from "components/Location";
 import AdditionalData from "components/AdditionalData";
 import NextDaysData from "components/NextDaysData";
 import ChangeLanguage from "components/ChangeLanguage/ChangeLanguage";
-import { TextInfo } from "components/Location/Location.styled";
-import { useTranslation } from "react-i18next";
+import NoResults from "components/NoResults/NoResults";
+import WelcomeApp from "components/WelcomeApp/WelcomeApp";
 
 const App = () => {
   const [currentTheme, setCurrentTheme] = useState(
@@ -29,7 +29,7 @@ const App = () => {
     localStorage.getItem("weather-lang") || "en"
   );
   const [loading, setLoading] = useState<boolean>(false);
-  const { t } = useTranslation();
+
   useEffect(() => {
     if (searchValue === "") {
       return;
@@ -93,9 +93,9 @@ const App = () => {
           ) : (
             <>
               {!searchValue && !result ? (
-                <TextInfo>{t('main.welcome')}</TextInfo>
+               <WelcomeApp/>
               ) : (
-                <div>There are not result, please try again</div>
+                <NoResults/>
               )}
             </>
           )}

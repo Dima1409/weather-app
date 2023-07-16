@@ -19,7 +19,7 @@ const SearchForm: React.FC<FormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form style={{display: 'flex', justifyContent: 'space-between'}} onSubmit={handleSubmit}>
       <InputForm
         type="text"
         value={query}

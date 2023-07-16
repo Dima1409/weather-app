@@ -1,17 +1,33 @@
 @font-face {
   font-family: "Tektur";
-  src: url('./assets//fonts/Tektur.ttf');
+  src: url("./assets//fonts/Tektur.ttf");
+}
+body {
+  margin: 0;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, span, div, a, input, button, select {
-  font-family: "Tektur", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+a,
+input,
+button,
+select {
+  font-family: "Tektur", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: "Tektur", source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: "Tektur", source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

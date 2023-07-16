@@ -70,7 +70,7 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
     const countRain: number | undefined = rain?.filter(
       (count) => count.includes("rain") || count.includes("дощ")
     ).length;
-    const changeOfRain: number =
+    const changeOfRain: number  =
       countRain && rain ? (countRain * 100) / rain.length : 0;
 
     const cloudiness: number[] | undefined = filteredData?.map(

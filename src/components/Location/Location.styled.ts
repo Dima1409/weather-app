@@ -10,7 +10,7 @@ const LocationWrapper = styled.div`
   border: 1px solid transparent;
   border-radius: 20px;
   background-color: ${(props) => props.theme.background};
-  box-shadow: 0 0 4px ${(props) => props.theme.text};
+  box-shadow: 0 0 4px ${(props) => props.theme.text} inset;
   ${theme.mq.tablet} {
     width: 50%;
   }
@@ -44,13 +44,13 @@ const Description = styled.div`
   width: 80px;
   opacity: 0.9;
   background-color: ${(props) => props.theme.background};
-  box-shadow: 0 0 4px ${(props) => props.theme.text};
+  box-shadow: 0 0 4px ${(props) => props.theme.text} inset;
   font-size: ${theme.fontSizes.small}px;
   font-weight: ${theme.fontWeights.medium};
   color: white;
   & > span {
     font-weight: ${theme.fontWeights.semiBold};
-    font-size: ${theme.fontSizes.medium}px;
+    font-size: ${theme.fontSizes.base}px;
     color: ${(props) => props.theme.text};
   }
   & > svg {
@@ -63,7 +63,7 @@ const SunInfo = styled.div`
   align-items: center;
   margin: 0 auto;
   background-color: ${(props) => props.theme.background};
-  box-shadow: 0 0 4px ${(props) => props.theme.text};
+  box-shadow: 0 0 4px ${(props) => props.theme.text} inset;
   border-radius: 20px;
   margin-bottom: 12px;
   padding: 20px 4px;
@@ -72,7 +72,7 @@ const SunInfo = styled.div`
   }
 `;
 const TextInfo = styled.p`
-  font-weight: ${theme.fontWeights.medium};
+  font-weight: ${theme.fontWeights.normal};
   color: ${(props) => props.theme.text};
   display: flex;
   padding: 4px;
