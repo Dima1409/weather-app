@@ -5,7 +5,7 @@ const InfoSearch = styled.p`
   font-weight: ${theme.fontWeights.normal};
   font-size: ${theme.fontSizes.large};
   text-align: center;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.theme.accent};
   padding: 4px;
   margin: 0;
   margin-bottom: 40px;

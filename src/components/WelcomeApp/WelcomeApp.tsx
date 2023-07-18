@@ -15,9 +15,11 @@ const WelcomeApp: React.FC = () => {
       <WelcomeTitle>{t('main.welcome')}</WelcomeTitle>
       <WelcomeList>
         <WelcomeListItem>{t('main.locale')}</WelcomeListItem>
-        <WelcomeListItem>{t('main.info')}</WelcomeListItem>
         <WelcomeListItem>{t('main.infoThreeHours')}</WelcomeListItem>
         <WelcomeListItem>{t('main.infoNextFiveDays')}</WelcomeListItem>
+        <WelcomeListItem>{t('main.theme')}</WelcomeListItem>
+        <WelcomeListItem>{t('main.lang')}</WelcomeListItem>
+        <WelcomeListItem>{t('main.saving')}</WelcomeListItem>
       </WelcomeList>
       <WelcomeUsing>{t('main.using')}</WelcomeUsing>
     </Welcome>

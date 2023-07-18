@@ -29,11 +29,13 @@ const SliderWrapper = styled(Slider)`
     }
   }
   & > ul > li.slick-active > button::before {
-    color: ${(props) => props.theme.text};
-    
+    color: ${(props) => props.theme.accent};  
+    opacity: 1;
   }
   & > ul > li > button::before {
-    color: ${(props) => props.theme.text};
+    color: ${(props) => props.theme.accent};
+    opacity: 0.45;
+    font-size: 12px;
   }
   & > ul {
     position: static;

@@ -39,7 +39,10 @@ const App = () => {
       try {
         const data: ISearchData = await baseSearch(searchValue, searchLang);
         localStorage.setItem("weather-value", searchValue);
-        const dataFiveDays: ISearchFiveDays = await searchFiveDays(searchValue, searchLang);
+        const dataFiveDays: ISearchFiveDays = await searchFiveDays(
+          searchValue,
+          searchLang
+        );
         setResult(data);
         setResFiveDays(dataFiveDays);
       } catch (error) {
@@ -78,26 +81,22 @@ const App = () => {
         </Header>
         <Container>
           <Global />
+          {!searchValue && <WelcomeApp />}
           {loading ? (
             <SpinnerCircular
+              size={90}
               color={currentTheme.text}
               secondaryColor={currentTheme.background}
-              style={{ display: "block", margin: "0 auto" }}
+              style={{ display: "block", margin: "160 auto" }}
             />
           ) : result && searchValue ? (
             <>
               <Location results={result} />
-              <AdditionalData results ={resFiveDays}/>
-              <NextDaysData results={resFiveDays}/>
+              <AdditionalData results={resFiveDays} />
+              <NextDaysData results={resFiveDays} />
             </>
           ) : (
-            <>
-              {!searchValue && !result ? (
-               <WelcomeApp/>
-              ) : (
-                <NoResults/>
-              )}
-            </>
+            !result && searchValue && <NoResults />
           )}
         </Container>
       </ThemeContext.Provider>

@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-// import { ISearchFiveDays } from "types/data";
 
 const baseSearch = async (value: string, lang: string): Promise<any> => {
   if (!value) {

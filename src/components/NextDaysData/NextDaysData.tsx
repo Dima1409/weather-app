@@ -49,7 +49,7 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
 
   const getFilteredData = (offset: number) => {
     const targetDate = new Date(
-      currentDate.getTime() + 86400000 * (offset + 1)
+      currentDate.getTime() + 86400000 * (offset+1)
     );
     return results?.list.filter((elem) => {
       const elemDate = new Date(elem.dt_txt).getDate();
@@ -59,20 +59,20 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
 
   const renderWeatherInfo = (offset: number) => {
     const filteredData = getFilteredData(offset);
+    console.log(filteredData);
 
     const temperatures = filteredData?.map((item) => item.main.temp);
     const minTemp = temperatures ? Math.min(...temperatures) : undefined;
     const maxTemp = temperatures ? Math.max(...temperatures) : undefined;
 
-    const rain: string[] | undefined = filteredData?.map(
+    const rain = filteredData?.map(
       (item) => item.weather[0].description
     );
-    const countRain: number | undefined = rain?.filter(
+    const countRain = rain?.filter(
       (count) => count.includes("rain") || count.includes("дощ")
     ).length;
-    const changeOfRain: number  =
-      countRain && rain ? (countRain * 100) / rain.length : 0;
-
+    const changeOfRain: number  = rain && countRain ?
+      (countRain * 100) / rain.length : 0;
     const cloudiness: number[] | undefined = filteredData?.map(
       (item) => item.clouds.all
     );
@@ -83,7 +83,7 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
     const percentCloudiness: number | undefined =
       accCloudiness && cloudiness
         ? accCloudiness / cloudiness.length
-        : undefined;
+        : 0;
 
     const wind: number[] | undefined = filteredData?.map(
       (item) => item.wind.speed
@@ -94,7 +94,7 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
 
     const renderCloudIcon = (): ReactNode => {
       const percentC: number | undefined = Number(percentCloudiness?.toFixed());
-      const percentR: number | undefined = Number(changeOfRain.toFixed());
+      const percentR: number = Number(changeOfRain.toFixed());
       switch (true) {
         case percentR >= 50 && percentC <= 20:
           return <Image src={`${urlIcon}10d.png`} alt="rain"></Image>;
