@@ -12,6 +12,11 @@ const Lang = styled.select`
   border: none;
   padding: 2px 1px;
   border-radius: 8px;
+  transition: 0.3s all;
+  &:hover,
+  &:focus {
+    cursor:pointer;
+  }
 `;
 const Icon = styled.svg`
   width: 12px;

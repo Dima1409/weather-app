@@ -35,21 +35,21 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
   });
 
   let slidesToShow = 4;
-  let slidesToScroll = 3;
+  let slidesToScroll = 4;
 
   if (isSmallScreen) {
     slidesToShow = 2;
-    slidesToScroll = 1;
+    slidesToScroll = 2;
   } else if (isMediumScreen) {
     slidesToShow = 2;
-    slidesToScroll = 1;
+    slidesToScroll = 2;
   }
 
   const settings = sliderSettings(slidesToShow, slidesToScroll);
 
   const getFilteredData = (offset: number) => {
     const targetDate = new Date(
-      currentDate.getTime() + 86400000 * (offset+1)
+      currentDate.getTime() + 86400000 * (offset + 1)
     );
     return results?.list.filter((elem) => {
       const elemDate = new Date(elem.dt_txt).getDate();
@@ -65,14 +65,12 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
     const minTemp = temperatures ? Math.min(...temperatures) : undefined;
     const maxTemp = temperatures ? Math.max(...temperatures) : undefined;
 
-    const rain = filteredData?.map(
-      (item) => item.weather[0].description
-    );
+    const rain = filteredData?.map((item) => item.weather[0].description);
     const countRain = rain?.filter(
       (count) => count.includes("rain") || count.includes("дощ")
     ).length;
-    const changeOfRain: number  = rain && countRain ?
-      (countRain * 100) / rain.length : 0;
+    const changeOfRain: number =
+      rain && countRain ? (countRain * 100) / rain.length : 0;
     const cloudiness: number[] | undefined = filteredData?.map(
       (item) => item.clouds.all
     );
@@ -81,9 +79,7 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
       0
     );
     const percentCloudiness: number | undefined =
-      accCloudiness && cloudiness
-        ? accCloudiness / cloudiness.length
-        : 0;
+      accCloudiness && cloudiness ? accCloudiness / cloudiness.length : 0;
 
     const wind: number[] | undefined = filteredData?.map(
       (item) => item.wind.speed
@@ -97,17 +93,59 @@ const NextDaysData: React.FC<NextDaysDataProps> = ({ results }) => {
       const percentR: number = Number(changeOfRain.toFixed());
       switch (true) {
         case percentR >= 50 && percentC <= 20:
-          return <Image src={`${urlIcon}10d.png`} alt="rain"></Image>;
+          return (
+            <Image
+              src={
+                isMediumScreen ? `${urlIcon}10d.png` : `${urlIcon}10d@2x.png`
+              }
+              alt="rain"
+            ></Image>
+          );
         case percentR >= 50 && percentC <= 100:
-          return <Image src={`${urlIcon}09d.png`} alt="rain"></Image>;
+          return (
+            <Image
+              src={
+                isMediumScreen ? `${urlIcon}09d.png` : `${urlIcon}09d@2x.png`
+              }
+              alt="rain"
+            ></Image>
+          );
         case percentC <= 20:
-          return <Image src={`${urlIcon}01d.png`} alt="clear sky" />;
+          return (
+            <Image
+              src={
+                isMediumScreen ? `${urlIcon}01d.png` : `${urlIcon}01d@2x.png`
+              }
+              alt="clear sky"
+            />
+          );
         case percentC <= 40:
-          return <Image src={`${urlIcon}02d.png`} alt="few clouds" />;
+          return (
+            <Image
+              src={
+                isMediumScreen ? `${urlIcon}02d.png` : `${urlIcon}02d@2x.png`
+              }
+              alt="few clouds"
+            />
+          );
         case percentC <= 80:
-          return <Image src={`${urlIcon}03d.png`} alt="clouds" />;
+          return (
+            <Image
+              src={
+                isMediumScreen ? `${urlIcon}03d.png` : `${urlIcon}03d@2x.png`
+              }
+              alt="clouds"
+            />
+          );
         case percentC >= 81:
-          return <Image src={`${urlIcon}04d.png`} alt="broken clouds" />;
+          return (
+            <Image
+              src={
+                isMediumScreen ? `${urlIcon}04d.png` : `${urlIcon}04d@2x.png`
+              }
+              alt="broken clouds"
+            />
+          );
         default:
           return null;
       }

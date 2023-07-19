@@ -22,14 +22,15 @@ const SliderWrapper = styled(Slider)`
     justify-content: space-between;
     & > div {
       margin: 0 2px;
-      flex-grow: 1;
       & > div > div {
+        padding: 6px 0;
         box-shadow: inset 0 0 4px ${(props) => props.theme.text};
+        min-height: 160px;
       }
     }
   }
   & > ul > li.slick-active > button::before {
-    color: ${(props) => props.theme.accent};  
+    color: ${(props) => props.theme.accent};
     opacity: 1;
   }
   & > ul > li > button::before {
@@ -47,12 +48,25 @@ const LoadDate = styled.div`
   margin: 0;
   padding: 2px;
   text-align: center;
-  font-size: ${theme.fontSizes.extraSmall}px;
+  font-size: ${theme.fontSizes.small}px;
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes.medium}px;
+  }
+  & span {
+    font-size: ${theme.fontSizes.small}px;
+    margin: 0;
+    ${theme.mq.tablet} {
+      font-size: ${theme.fontSizes.medium}px;
+    }
+  }
 `;
 
 const LoadTemp = styled(LoadDate)`
-   font-size: ${theme.fontSizes.large}px;
-   font-weight: ${theme.fontWeights.semiBold};
+  font-size: ${theme.fontSizes.large}px;
+  font-weight: ${theme.fontWeights.semiBold};
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes.extraLarge}px;
+  }
 `;
 
 const Image = styled.img`
@@ -61,8 +75,12 @@ const Image = styled.img`
 `;
 
 const Day = styled.p`
-text-decoration: underline;
-margin: 0;
-`
+  text-decoration: underline;
+  font-size: ${theme.fontSizes.small}px;
+  margin: 0;
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes.medium}px;
+  }
+`;
 
 export { LoadInfo, SliderWrapper, LoadDate, LoadTemp, Image, Day };

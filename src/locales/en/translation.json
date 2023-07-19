@@ -1,11 +1,11 @@
 {
     "main": {
         "welcome": "Welcome to the weather app!",
-        "locale": "You can enter the name of the city in English or Ukrainian in the search form",
-        "infoThreeHours": "Weather information for every next three hours will also be displayed",
-        "infoNextFiveDays": "For convenience, additional slides with the weather for the next five days have been implemented",
-        "lang": "The functionality is available in English or Ukrainian",
+        "locale": "Functionality and data search are available in English and Ukrainian",
+        "infoThreeHours": "Weather information for every next three hours",
+        "infoNextFiveDays": "Slides with the weather forecast for the next five days have been introduced",
         "theme": "Dark or light application theme - the choice is yours",
+        "mq": "Use a mobile phone, tablet or computer",
         "saving": "We've made sure that your settings are saved on your next visit",
         "using": "Happy using",
         "noResults": "No cities were found for your request, try again",

@@ -28,14 +28,14 @@ const AdditionalData: React.FC<AdditionalDataProps> = ({results}) => {
   });
 
   let slidesToShow = 5;
-  let slidesToScroll = 4;
+  let slidesToScroll = 5;
 
   if (isSmallScreen) {
     slidesToShow = 3;
-    slidesToScroll = 2;
+    slidesToScroll = 3;
   } else if (isLargeScreen) {
     slidesToShow = 4;
-    slidesToScroll = 3;
+    slidesToScroll = 4;
   }
 
   const settings = sliderSettings(slidesToShow, slidesToScroll);
@@ -53,20 +53,24 @@ const AdditionalData: React.FC<AdditionalDataProps> = ({results}) => {
                 {currentDate === Number(elem.dt_txt.slice(8, 10)) ? (
                   <div>
                     <Day>{t("main.day.today")}</Day>
-                    <div>{elem.dt_txt.slice(10, elem.dt_txt.length - 3)}</div>
+                    <span>{elem.dt_txt.slice(10, elem.dt_txt.length - 3)}</span>
                   </div>
                 ) : (
                   <div>
                     <Day>{t("main.day.tomorrow")}</Day>
-                    <div>{elem.dt_txt.slice(10, elem.dt_txt.length - 3)}</div>
+                    <span>{elem.dt_txt.slice(10, elem.dt_txt.length - 3)}</span>
                   </div>
                 )}
               </LoadDate>
               <LoadTemp>{elem.main.temp.toFixed(1)} °C</LoadTemp>
-              <Image
+              {isSmallScreen ? <Image
                 src={`${urlIcon}${elem.weather[0].icon}.png`}
                 alt={elem.weather[0].icon}
-              ></Image>
+              ></Image> : <Image
+              src={`${urlIcon}${elem.weather[0].icon}@2x.png`}
+              alt={elem.weather[0].icon}
+            ></Image>}
+              
               <LoadDate>
                 {elem.weather[0].description.charAt(0).toUpperCase() +
                   elem.weather[0].description.slice(1)}

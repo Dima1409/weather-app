@@ -25,12 +25,19 @@ const Image = styled.img`
   height: 100px;
   display: block;
   margin: 0;
+  ${theme.mq.tablet} {
+    width: 150px;
+  height: 150px;
+  }
 `;
 const DescriptionWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 8px 0;
+  margin: 8px auto;
   flex-wrap: wrap;
+  ${theme.mq.tablet} {
+    width: 50%;
+  }
 `;
 const Description = styled.div`
   display: flex;
@@ -39,7 +46,7 @@ const Description = styled.div`
   justify-content: space-around;
   border: 1px solid transparent;
   border-radius: 20px;
-  padding: 20px 4px;
+  padding: 10px 4px;
   margin-bottom: 5px;
   width: 80px;
   opacity: 0.9;
@@ -48,10 +55,17 @@ const Description = styled.div`
   font-size: ${theme.fontSizes.small}px;
   font-weight: ${theme.fontWeights.medium};
   color: white;
+  ${theme.mq.tablet} {
+    width: 110px;
+    font-size: ${theme.fontSizes.medium}px;
+  }
   & > span {
     font-weight: ${theme.fontWeights.semiBold};
     font-size: ${theme.fontSizes.base}px;
     color: ${(props) => props.theme.text};
+    ${theme.mq.tablet} {
+      font-size: ${theme.fontSizes.large}px;
+    }
   }
   & > svg {
     color: ${(props) => props.theme.text};
@@ -87,6 +101,9 @@ const CityMain = styled.p`
   font-weight: ${theme.fontWeights.bold};
   color: ${(props) => props.theme.text};
   margin: 0;
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes.extraLarge}px;
+  }
 `;
 
 export {

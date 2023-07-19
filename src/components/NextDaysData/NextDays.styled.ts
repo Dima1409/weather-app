@@ -13,18 +13,27 @@ margin-bottom: 6px;
 const MainDate = styled(LoadDate)`
   font-size: ${theme.fontSizes.small}px;
   text-decoration: underline;
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes.medium}px;
+  }
 `;
 
 const DayOfWeek = styled(LoadDate)`
   font-size: ${theme.fontSizes.small}px;
   text-decoration: underline;
   margin: 0;
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes.medium}px;
+  }
 `;
 
 const MinMaxTemp = styled.span`
   font-size: ${theme.fontSizes.small}px;
   color: ${(props) => props.theme.text};
   margin-left: 10px;
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes.large}px;
+  }
 `;
 
 const Rain = styled.p`
@@ -32,6 +41,9 @@ const Rain = styled.p`
   margin: 0;
   text-align: center;
   color: ${(props) => props.theme.text};
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes.medium}px;
+  }
 `;
 
 const Image = styled.img`
