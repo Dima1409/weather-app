@@ -25,7 +25,7 @@ const SliderWrapper = styled(Slider)`
       & > div > div {
         padding: 6px 0;
         box-shadow: inset 0 0 4px ${(props) => props.theme.text};
-        min-height: 160px;
+        min-height: 170px;
       }
     }
   }
